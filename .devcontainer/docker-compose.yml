@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   app:
@@ -10,6 +11,8 @@ services:
       - "3000:3000"
     command: sleep infinity
     environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
       - MONGO_DB_NAME=library
       - MONGO_PORT=27017
       - MONGO_HOST=mongo
@@ -20,24 +23,21 @@ services:
     image: mongo:latest
     restart: unless-stopped
     volumes:
-      - mongodb-data:/data/db
+      - mongodb-data:/data/mongo
     networks:
       - dbs_network
 
-  neo4j:
-    image: neo4j:latest
-    container_name: neo4j
-    environment:
-      - NEO4J_AUTH=none
+  redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
     volumes:
-      - ./../Data:/import
-    command: ["neo4j"]
+      - redis-data:/data/redis
     networks:
       - dbs_network
 
 volumes:
   mongodb-data:
-  neo4j_data:
+  redis-data:
 
 networks:
   dbs_network:

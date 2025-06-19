@@ -11,7 +11,7 @@
             },
             "extensions": [
                 "mongodb.mongodb-vscode",
-                "johnbillion.vscode-neo4j",
+                "redis.redis-for-vscode",
                 "esbenp.prettier-vscode",
                 "editorconfig.editorconfig"
             ]
