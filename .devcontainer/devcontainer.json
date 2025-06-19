@@ -27,6 +27,6 @@
     "postCreateCommand": {
         // "populate": "bash .devcontainer/populate.sh", tenemos que crear un bash para popular
         "npm": "npm i"
-    },
+    }
     // "postStartCommand": "nohup bash -c 'node . &'"
 }
