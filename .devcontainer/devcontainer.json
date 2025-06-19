@@ -11,7 +11,7 @@
             },
             "extensions": [
                 "mongodb.mongodb-vscode",
-                "redis.redis-for-vscode",
+                "johnbillion.vscode-neo4j",
                 "esbenp.prettier-vscode",
                 "editorconfig.editorconfig"
             ]
@@ -24,9 +24,10 @@
     "forwardPorts": [
         3000
     ],
-    "postCreateCommand": {
-        // "populate": "bash .devcontainer/populate.sh", tenemos que crear un bash para popular
+    /*"postCreateCommand": {
+        "populate": "bash .devcontainer/populateMongo.sh",
         "npm": "npm i"
-    }
+    }*/
+    "postCreateCommand": ".devcontainer/populateMongo.sh"
     // "postStartCommand": "nohup bash -c 'node . &'"
 }
