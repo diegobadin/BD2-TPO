@@ -24,10 +24,11 @@
     "forwardPorts": [
         3000
     ],
-    /*"postCreateCommand": {
-        "populate": "bash .devcontainer/populateMongo.sh",
-        "npm": "npm i"
-    }*/
-    "postCreateCommand": ".devcontainer/populateMongo.sh"
+    "postCreateCommand": {
+        "npm": "npm i",
+        "start": "npm start",
+        "populate": "bash .devcontainer/populateMongo.sh"
+
+    }
     // "postStartCommand": "nohup bash -c 'node . &'"
 }
