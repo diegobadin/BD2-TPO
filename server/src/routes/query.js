@@ -19,7 +19,11 @@ router.get('/:id', async (req, res) => {
             return res.json({ source: 'redis', data: JSON.parse(cached) });
         }
 
-        const results = await query.execute();
+        const results = await query.execute({
+            query: req.query,
+            params: req.params,
+            body: req.body,
+        });
         await redisClient.set(redisKey, JSON.stringify(results));
 
         res.json({ source: 'mongo', data: results });
