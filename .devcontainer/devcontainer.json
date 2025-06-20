@@ -24,10 +24,8 @@
     "forwardPorts": [
         3000
     ],
-    "postCreateCommand": {
-        "npm": "npm i",
-        "start": "npm start",
-        "populate": "bash .devcontainer/populate.sh"
-    }
-    // "postStartCommand": "nohup bash -c 'node . &'"
+    "postCreateCommand": "npm install --prefix server && npm install --prefix client && bash scripts/populate.sh",
+    
+    "postStartCommand": "npm run dev --prefix server & npm start --prefix client"
+
 }
