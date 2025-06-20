@@ -1,6 +1,6 @@
 
 db.productos.createIndex({ id_producto: 1 });
-d.ops.createIndex({ id_pedido: 1 });
+db.ops.createIndex({ id_pedido: 1 });
 db.proveedores.createIndex({ id_proveedor: 1 });
 
 db.telefonos_temp.find().forEach(function(tel) {

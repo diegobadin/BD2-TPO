@@ -14,7 +14,7 @@ mongoimport --host mongo --port 27017  --db tpo_g7 --collection telefonos_temp -
 mongoimport --host mongo --port 27017  --db tpo_g7 --collection ops --type csv --headerline --file /workspaces/BD2-TPO/datasets/op_coma.csv
 mongoimport --host mongo --port 27017  --db tpo_g7 --collection detalle_ops --type csv --headerline --file /workspaces/BD2-TPO/datasets/detalle_op_coma.csv
 
-mongosh mongodb://mongo:27017/tpo_g7 .devcontainer/populate.js
+mongosh mongodb://mongo:27017/tpo_g7 scripts/populate.js
 
 rm /workspaces/BD2-TPO/datasets/producto_coma.csv
 rm /workspaces/BD2-TPO/datasets/proveedor_coma.csv
