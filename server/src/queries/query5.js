@@ -10,7 +10,7 @@ module.exports = {
     getKey() {
     return key_prefix 
     },
-    resources: ["proveedores", "ordenes"],
+    resources: ["proveedores", "ops"],
     async execute() {
         const db = await getDB();
         const results = await db
@@ -41,7 +41,7 @@ module.exports = {
         .toArray();
 
       subscribe("proveedores", key_prefix);
-      subscribe("ordenes", key_prefix);
+      subscribe("ops", key_prefix);
       return results;
     }
 };
