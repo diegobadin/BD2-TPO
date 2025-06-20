@@ -17,7 +17,7 @@ module.exports = {
     
         const results = await db.collection(proveedores).find(
             {razon_social: { $regex: query.word, $options: 'i' }},
-            { projection: { _id: 0, id_proveedor: 1, razon_social: 1, telefonos: 1 } }
+            {projection: { _id: 0, id_proveedor: 1, razon_social: 1, telefonos: 1 } }
             ).toArray();
 
         subscribe(proveedores, key_prefix + ":" + query.word);
