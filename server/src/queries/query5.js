@@ -10,7 +10,7 @@ module.exports = {
     getKey() {
     return key_prefix 
     },
-    resources: ["proveedores", "ordenes"],
+    resources: ["proveedores", "ops"],
     async execute() {
         const db = await getDB();
         const results = await db
@@ -18,7 +18,7 @@ module.exports = {
         .aggregate([
           {
             $lookup: {
-              from: "ordenes", 
+              from: "ops", 
               localField: "id_proveedor", 
               foreignField: "id_proveedor", 
               as: "ordenes",
@@ -41,7 +41,7 @@ module.exports = {
         .toArray();
 
       subscribe("proveedores", key_prefix);
-      subscribe("ordenes", key_prefix);
+      subscribe("ops", key_prefix);
       return results;
     }
 };
