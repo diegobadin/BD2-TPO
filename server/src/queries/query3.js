@@ -1,7 +1,6 @@
 const { getDB } = require('../lib/mongo');
 const { subscribe } = require('../utils/cacheDependency');
 const proveedores = "proveedores";
-const operaciones = "ops";
 const key_prefix = "query3";
 
 module.exports = {
@@ -12,41 +11,21 @@ module.exports = {
     async execute() {
         const db = getDB();
 
-        const results = await db.collection(proveedores).agregate([
-            {
-                $lookup: {
-                    from: operaciones,
-                    localField: 'id_proveedor',
-                    foreignField: 'id_proveedor',
-                    as: 'operaciones'
-                }
-            },
+        const results = await db.collection(proveedores).aggregate([
+            { $unwind: "$telefonos" },
             {
                 $project: {
                     _id: 0,
+                    telefono: "$telefonos",
                     id_proveedor: 1,
+                    CUIT_proveedor: 1,
                     razon_social: 1,
-                    cantidad_operaciones: { $size: "$operaciones" },
-                    total_sin_iva: {
-                        $sum: "$operaciones.total_sin_iva"
-                    },
-                    total_con_iva: {
-                        $sum: {
-                            $map: {
-                                input: "$operaciones",
-                                as: "op",
-                                in: {
-                                    $multiply: [
-                                        "$$op.total_sin_iva",
-                                        { $add: [1, { $divide: ["$$op.iva", 100] }] }
-                                    ]
-                                }
-                            }
-                        }
-                    }
+                    tipo_sociedad: 1,
+                    direccion: 1,
+                    activo: 1,
+                    habilitado: 1,
                 }
-            }
-        ]).toArray();
+            }]).toArray();
         subscribe(proveedores, key_prefix);
         return results;
     }
