@@ -41,7 +41,7 @@ module.exports = {
         .toArray();
 
       subscribe("proveedores", key_prefix);
-      subscribe("ordenar", key_prefix);
+      subscribe("ordenes", key_prefix);
       return results;
     }
 };
