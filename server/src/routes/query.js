@@ -18,7 +18,11 @@ router.get('/:id', async (req, res) => {
         
         const redisClient = getRedis();
 
-        const cached = await redisClient.get(redisKey);
+        const cached = await redisClient.get(query.getKey({
+            query: req.query,
+            params: req.params,
+            body: req.body,
+        }));
         if (cached) {
             return res.json({ source: 'redis', data: JSON.parse(cached) });
         }
@@ -28,7 +32,7 @@ router.get('/:id', async (req, res) => {
             params: req.params,
             body: req.body,
         });
-        await redisClient.set(redisKey, JSON.stringify(results));
+        await redisClient.set(redisKey, JSON.stringify(results),{EX: 60 });
 
         res.json({ source: 'mongo', data: results });
     } catch (err) {
