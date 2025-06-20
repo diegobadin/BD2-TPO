@@ -18,7 +18,7 @@ module.exports = {
         .aggregate([
           {
             $lookup: {
-              from: "ordenes", 
+              from: "ops", 
               localField: "id_proveedor", 
               foreignField: "id_proveedor", 
               as: "ordenes",
