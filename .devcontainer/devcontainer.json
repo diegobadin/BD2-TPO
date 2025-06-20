@@ -27,8 +27,7 @@
     "postCreateCommand": {
         "npm": "npm i",
         "start": "npm start",
-        "populate": "bash .devcontainer/populateMongo.sh"
-
+        "populate": "bash .devcontainer/populate.sh"
     }
     // "postStartCommand": "nohup bash -c 'node . &'"
 }
