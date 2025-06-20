@@ -1,4 +1,4 @@
-const redisClient = require('../db/redis');
+const redisClient = require('../lib/redis');
 
 const dependencyMap = new Map(); // recurso -> Set de claves de cache
 

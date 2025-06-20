@@ -8,7 +8,8 @@ router.get('/:id', async (req, res) => {
     const id = req.params.id;
 
     try {
-        const queryPath = path.join(__dirname, '../../../queries', `query${id}.js`);
+        const queryPath = path.join(__dirname, '../queries/', `query${id}.js`);
+        console.log(queryPath);
         const query = require(queryPath);
 
         const redisKey = query.key;
