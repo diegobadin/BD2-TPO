@@ -34,6 +34,8 @@ services:
       - redis-data:/data/redis
     networks:
       - dbs_network
+    ports:
+      - "6379:6379"
 
 volumes:
   mongodb-data:

@@ -4,7 +4,7 @@ let client;
 let db;
 
 async function connectMongo() {
-  const uri = process.env.MONGO_URI || 'mongodb://mongo:27017/tpo_g7';
+  const uri = 'mongodb://mongo:27017/tpo_g7';
   client = new MongoClient(uri);
   await client.connect();
   db = client.db(); 
