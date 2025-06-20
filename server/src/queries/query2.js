@@ -1,20 +1,22 @@
 const { getDB } = require('../lib/mongo');
 const { subscribe } = require('../utils/cacheDependency');
-
+const proveedores = "proveedores";
 module.exports = {
   key: 'query2',
-  resources: ['proveedores'],
-  async execute(word) {
+  resources: [proveedores],
+  async execute({ query }) {
         const db = getDB();
         
-        const regex = new RegExp(word, 'i'); 
+        if (!query.word) throw error();
 
-        const results = await db.proveedores.find(
+        const regex = new RegExp(query.word, 'i'); 
+
+        const results = await db.collection(proveedores).find(
             { razon_social: regex },
             { projection: {_id: 0, id_proveedor: 1, razon_social: 1, telefonos: 1}}
         ).toArray();
 
-        subscribe('proveedores', 'query2');
+        subscribe(proveedores, 'query2');
         return results;
     }
 };
