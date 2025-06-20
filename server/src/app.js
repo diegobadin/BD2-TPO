@@ -4,8 +4,7 @@ const { connectMongo } = require('./lib/mongo');
 const { connectRedis } = require('./lib/redis');
 
 const productosR = require('./routes/productos');
-//const proveedoresR = require('./routes/proveedores');
-//const ordenesR = require('./routes/ordenes');
+const queryR = require('./routes/query');
 
 async function bootstrap() {
   await connectMongo();
@@ -14,10 +13,8 @@ async function bootstrap() {
   const app = express();
   app.use(express.json());
 
-  // Rutas
   app.use('/api/productos', productosR);
-  //app.use('/api/proveedores', proveedoresR);
-//  app.use('/api/ordenes', ordenesR);
+  app.use('/api/query', queryR);
 
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => console.log(`API escuchando en puerto ${PORT}`));
