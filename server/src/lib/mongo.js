@@ -1,9 +1,19 @@
-const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+
+let client;
+let db;
 
 async function connectMongo() {
   const uri = process.env.MONGO_URI || 'mongodb://mongo:27017/tpo_g7';
-  await mongoose.connect(uri);
+  client = new MongoClient(uri);
+  await client.connect();
+  db = client.db(); 
   console.log('Conectado a MongoDB');
 }
 
-module.exports = { connectMongo };
+function getDB() {
+  if (!db) throw new Error('Mongo no inicializado');
+  return db;
+}
+
+module.exports = { connectMongo, getDB };
