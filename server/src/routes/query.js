@@ -6,10 +6,8 @@ const { getRedis } = require('../lib/redis');
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    console.error(req.query.word);
     try {
         const queryPath = path.join(__dirname, '../queries/', `query${id}.js`);
-        console.log(queryPath);
         const query = require(queryPath);
 
         const redisKey = query.getKey({
