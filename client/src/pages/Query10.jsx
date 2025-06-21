@@ -30,7 +30,7 @@ function Query1() {
   }, []);
 
   const columns = [
-    { Header: 'Fecha', accessor: 'fecha' },
+    { Header: 'Fecha', accessor: 'fechaDate' },
     { Header: 'ID pedido', accessor: 'id_pedido' },
     { Header: 'Razón Social', accessor: 'razon_social' },
     { Header: 'Total sin IVA', accessor: 'total_sin_iva' },
