@@ -28,34 +28,6 @@ module.exports = {
                 viewOn: "ops",
                 pipeline: [
                 {
-                    $lookup: {
-                        from: "detalle_ops",
-                        localField: "id_pedido",
-                        foreignField: "id_pedido",
-                        as: "d"
-                    }
-                },
-                { $unwind: "$d" },
-                {
-                    $lookup: {
-                        from: "productos",
-                        localField: "d.id_producto",
-                        foreignField: "id_producto",
-                        as: "prod"
-                    }
-                },
-                { $unwind: "$prod" },
-                { $addFields: { subtotal: { $multiply: ["$prod.precio", "$d.cantidad"] } } },
-                {
-                    $group: {
-                        _id: "$id_pedido",
-                        id_proveedor: { $first: "$id_proveedor" },
-                        fecha: { $first: "$fecha" },
-                        iva: { $first: "$iva" },
-                        total_sin_iva: { $sum: "$subtotal" }
-                    }
-                },
-                {
                     $addFields: {
                         total_con_iva: {
                             $add: [

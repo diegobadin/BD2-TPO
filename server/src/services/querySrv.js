@@ -30,7 +30,7 @@ async function get(req, res) {
             params: req.params,
             body: req.body,
         });
-        await redisClient.set(redisKey, JSON.stringify(results),{EX: 2 });
+        await redisClient.set(redisKey, JSON.stringify(results),{EX: 60 });
 
         res.json({ source: 'mongo', data: results });
     } catch (err) {
