@@ -50,7 +50,6 @@ module.exports = {
             $project: {
               _id: 0,
               id_pedido: "$_id",
-              fecha: 1,
               razon_social: "$prov.razon_social",
               total_sin_iva: { $round: ["$total_sin_iva", 2] },
               total_con_iva: { $round: ["$total_con_iva", 2] },
