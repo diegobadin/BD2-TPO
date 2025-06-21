@@ -1,9 +1,9 @@
 /**
- * Se necesita crear una vista que devuelva los datos de las órdenes de pedido ordenadas por fecha 
+ * Se necesita crear una vista que devuelva los datos de las órdenes de pedido ordenadas por fecha
  * (incluyendo la razón social del proveedor y el total de la orden sin y con IVA).
  */
-const { getDB } = require('../lib/mongo');
-const { subscribe } = require('../utils/cacheDependency');
+const { getDB } = require("../lib/mongo");
+const { subscribe } = require("../utils/cacheDependency");
 
 const key_prefix = "query10";
 const proveedores = "proveedores";
@@ -13,58 +13,69 @@ const productos = "productos";
 const viewName = "vista_ordenes_detalladas";
 
 module.exports = {
-    getKey() {
-        return key_prefix;
-    },
-    resources: [proveedores, ops, detalle_ops, productos],
+  getKey() {
+    return key_prefix;
+  },
+  resources: [proveedores, ops, detalle_ops, productos],
 
-    async execute() {
-        const db = getDB();
-        const existing = await db.listCollections({ name: viewName }).toArray();
+  async execute() {
+    const db = getDB();
+    const existing = await db.listCollections({ name: viewName }).toArray();
 
-        if (existing.length === 0) {
-            await db.command({
-                create: viewName,
-                viewOn: "ops",
-                pipeline: [
-                {
-                    $addFields: {
-                        total_con_iva: {
-                            $add: [
-                                "$total_sin_iva",
-                                { $multiply: [ "$total_sin_iva", { $divide: ["$iva", 100] } ] }
-                            ]
-                        }
-                    }
+    if (existing.length === 0) {
+      await db.command({
+        create: viewName,
+        viewOn: "ops",
+        pipeline: [
+          {
+            $addFields: {
+              total_con_iva: {
+                $add: [
+                  "$total_sin_iva",
+                  { $multiply: ["$total_sin_iva", { $divide: ["$iva", 100] }] },
+                ],
+              },
+            },
+          },
+          {
+            $lookup: {
+              from: "proveedores",
+              localField: "id_proveedor",
+              foreignField: "id_proveedor",
+              as: "prov",
+            },
+          },
+          { $unwind: "$prov" },
+          {
+            $project: {
+              _id: 0,
+              id_pedido: "$_id",
+              fecha: 1,
+              razon_social: "$prov.razon_social",
+              total_sin_iva: { $round: ["$total_sin_iva", 2] },
+              total_con_iva: { $round: ["$total_con_iva", 2] },
+            },
+          },
+          {
+            $addFields: {
+              fechaDate: {
+                $dateFromString: {
+                  dateString: "$fecha",
+                  format: "%d/%m/%Y",
                 },
-                {
-                    $lookup: {
-                        from: "proveedores",
-                        localField: "id_proveedor",
-                        foreignField: "id_proveedor",
-                        as: "prov"
-                    }
-                },
-                { $unwind: "$prov" },
-                {
-                    $project: {
-                        _id: 0,
-                        id_pedido: "$_id",
-                        fecha: 1,
-                        razon_social: "$prov.razon_social",
-                        total_sin_iva: { $round: ["$total_sin_iva", 2] },
-                        total_con_iva: { $round: ["$total_con_iva", 2] },
-                    }
-                },
-                { $sort: { fecha: 1 } }
-            ]});
-        }
-    
-        subscribe(proveedores, key_prefix);
-        subscribe(ops, key_prefix);
-        subscribe(detalle_ops, key_prefix);
-        subscribe(productos, key_prefix);
-
-        return await db.collection(viewName).find().toArray();
+              },
+            },
+          },
+          { $sort: { fechaDate: 1 } },
+        ],
+      });
     }
+
+    subscribe(proveedores, key_prefix);
+    subscribe(ops, key_prefix);
+    subscribe(detalle_ops, key_prefix);
+    subscribe(productos, key_prefix);
+
+    return await db.collection(viewName).find().toArray();
+  },
 };
