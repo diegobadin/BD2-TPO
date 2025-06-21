@@ -1,0 +1,42 @@
+{
+    "source": "mongo",
+    "data": [
+        {
+            "id_proveedor": 17,
+            "razon_social": "Tecnolog�a Avanzada",
+            "telefonos": [
+                {
+                    "codigo_area": 729,
+                    "nro_telefono": 4228712,
+                    "tipo": "F"
+                },
+                {
+                    "codigo_area": 734,
+                    "nro_telefono": 4571175,
+                    "tipo": "M"
+                }
+            ]
+        },
+        {
+            "id_proveedor": 16,
+            "razon_social": "Tecnolog�a Moderna",
+            "telefonos": [
+                {
+                    "codigo_area": 581,
+                    "nro_telefono": 4369984,
+                    "tipo": "M"
+                },
+                {
+                    "codigo_area": 599,
+                    "nro_telefono": 4349389,
+                    "tipo": "M"
+                },
+                {
+                    "codigo_area": 717,
+                    "nro_telefono": 4117747,
+                    "tipo": "M"
+                }
+            ]
+        }
+    ]
+}

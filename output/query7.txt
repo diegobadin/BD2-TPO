@@ -1,0 +1,7 @@
+{"source":"redis","data":[{"id_pedido":1,"fecha":"27/5/2023","total_sin_iva":233512.33,"total_con_iva":282549.91929999995},
+{"id_pedido":17,"fecha":"31/5/2023","total_sin_iva":258444.38,"total_con_iva":312717.6998},
+{"id_pedido":60,"fecha":"4/2/2024","total_sin_iva":120616.95,"total_con_iva":145946.5095},
+{"id_pedido":61,"fecha":"9/12/2023","total_sin_iva":156841.07,"total_con_iva":189777.6947},
+{"id_pedido":66,"fecha":"22/5/2023","total_sin_iva":85202.66,"total_con_iva":103095.21860000001},
+{"id_pedido":55,"fecha":"20/6/2023","total_sin_iva":757684.14,"total_con_iva":916797.8094},
+{"id_pedido":52,"fecha":"30/6/2023","total_sin_iva":915906.54,"total_con_iva":1108246.9134}]}
