@@ -18,12 +18,6 @@ export default function Navbar() {
         <li><NavLink to="/q11">11. productos que aún NO han sido pedidos”</NavLink></li>
         <li><NavLink to="/q12">12. proveedores activos que están inhabilitados.”</NavLink></li>
       </ul>
-      <h3>Formularios</h3>
-      <ul>
-        <li><NavLink to="/new-proveedor">13. Nuevo Proveedor</NavLink></li>
-        <li><NavLink to="/new-producto">14. Nuevo Producto</NavLink></li>
-        <li><NavLink to="/new-orden">15. Nueva Orden</NavLink></li>
-      </ul>
     </nav>
   );
 }
