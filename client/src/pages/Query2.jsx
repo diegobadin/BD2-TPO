@@ -6,7 +6,7 @@ function Query1() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchQueryWithParam(2, 'word=Tecnología')
+    fetchQueryWithParam(2, 'word=Tecnolog�a')
       .then(res => {
         console.log("Respuesta API completa:", res.data);
         if (res.data && Array.isArray(res.data.data)) {
