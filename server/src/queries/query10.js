@@ -47,25 +47,29 @@ module.exports = {
           },
           { $unwind: "$prov" },
           {
+            $addFields: {
+              fechaDate: {
+                $dateFromString: {
+                  dateString: { $trim: { input: "$fecha" } },
+                  format: "%d/%m/%Y"
+                }
+              },
+            },
+          },
+          {
             $project: {
               _id: 0,
-              id_pedido: "$_id",
+              id_pedido: "$id_pedido",
               razon_social: "$prov.razon_social",
+              fechaDate: 1,
+              fecha_original: "$fecha", 
               total_sin_iva: { $round: ["$total_sin_iva", 2] },
               total_con_iva: { $round: ["$total_con_iva", 2] },
             },
           },
           {
-            $addFields: {
-              fechaDate: {
-                $dateFromString: {
-                  dateString: "$fecha",
-                  format: "%d/%m/%Y",
-                },
-              },
-            },
+            $sort: { fechaDate: 1 },
           },
-          { $sort: { fechaDate: 1 } },
         ],
       });
     }
