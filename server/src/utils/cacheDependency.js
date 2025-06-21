@@ -1,4 +1,4 @@
-const redisClient = require('../lib/redis');
+const {getRedis} = require('../lib/redis');
 
 const dependencyMap = new Map(); // recurso -> Set de claves de cache
 
@@ -19,6 +19,7 @@ function subscribe(resource, queryKey) {
  * @param {string} resource
  */
 async function markDirty(resource) {
+    const redisClient = getRedis();
     const dependents = dependencyMap.get(resource);
     if (!dependents) return;
 

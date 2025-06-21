@@ -1,5 +1,4 @@
 const { getDB } = require('../lib/mongo');
-const { ObjectId } = require('mongodb');
 const { markDirty } = require('../utils/cacheDependency');
 
 async function create(data) {
