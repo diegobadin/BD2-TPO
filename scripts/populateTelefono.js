@@ -1,7 +1,7 @@
 
-db.productos.createIndex({ id_producto: 1 });
-db.ops.createIndex({ id_pedido: 1 });
-db.proveedores.createIndex({ id_proveedor: 1 });
+db.productos.createIndex({ id_producto: 1 }, { unique: true });
+db.ops.createIndex({ id_pedido: 1 }, { unique: true });
+db.proveedores.createIndex({ id_proveedor: 1 }, { unique: true });
 
 db.telefonos_temp.find().forEach(function(tel) {
   db.proveedores.updateOne(
