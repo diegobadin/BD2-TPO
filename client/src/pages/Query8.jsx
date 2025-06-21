@@ -6,7 +6,7 @@ function Query1() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchQuery(1)
+    fetchQuery(8)
       .then(res => {
         console.log("Respuesta API completa:", res.data);
         if (res.data && Array.isArray(res.data.data)) {
@@ -30,14 +30,18 @@ function Query1() {
   }, []);
 
   const columns = [
-    { Header: 'ID', accessor: 'id_proveedor' },
-    { Header: 'Razón Social', accessor: 'razon_social' },
-    { Header: 'Teléfonos', accessor: 'telefonos' },
+    { Header: 'ID producto', accessor: 'id_producto' },
+    { Header: 'Categoria', accessor: 'categoria' },
+    { Header: 'Descripçión', accessor: 'descripcion' },
+    { Header: 'Marca', accessor: 'marca' },
+    { Header: 'Precio', accessor: 'precio' },
+    { Header: 'Stock Actual', accessor: 'stock_actual' },
+    { Header: 'Stock Futuro', accessor: 'stock_futuro' },
   ];
 
   return (
     <div style={{ padding: 16 }}>
-      <h2>1. Proveedores Activos y Habilitados</h2>
+      <h2>Mostrar los productos que han sido pedido al menos 1 vez.</h2>
       <Table columns={columns} data={data} />
     </div>
   );

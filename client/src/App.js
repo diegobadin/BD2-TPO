@@ -2,16 +2,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Query1 from './pages/Query1';
 import Query2 from './pages/Query2';
-import Query3 from './pages/Query1';
-import Query4 from './pages/Query1';
-import Query5 from './pages/Query1';
-import Query6 from './pages/Query1';
-import Query7 from './pages/Query1';
-import Query8 from './pages/Query1';
-import Query9 from './pages/Query1';
-import Query10 from './pages/Query1';
-import Query11 from './pages/Query1';
-import Query12 from './pages/Query1';
+import Query3 from './pages/Query3';
+import Query4 from './pages/Query4';
+import Query5 from './pages/Query5';
+import Query6 from './pages/Query6';
+import Query7 from './pages/Query7';
+import Query8 from './pages/Query8';
+import Query9 from './pages/Query9';
+import Query10 from './pages/Query10';
+import Query11 from './pages/Query11';
+import Query12 from './pages/Query12';
 
 export default function App() {
   return (

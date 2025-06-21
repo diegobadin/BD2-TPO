@@ -6,7 +6,7 @@ function Query1() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchQuery(1)
+    fetchQuery(5)
       .then(res => {
         console.log("Respuesta API completa:", res.data);
         if (res.data && Array.isArray(res.data.data)) {
@@ -31,13 +31,15 @@ function Query1() {
 
   const columns = [
     { Header: 'ID', accessor: 'id_proveedor' },
+    { Header: '¿Activo?', accessor: 'activo' },
+    { Header: '¿Habilitado?', accessor: 'habilitado' },
     { Header: 'Razón Social', accessor: 'razon_social' },
     { Header: 'Teléfonos', accessor: 'telefonos' },
   ];
 
   return (
     <div style={{ padding: 16 }}>
-      <h2>1. Proveedores Activos y Habilitados</h2>
+      <h2>Identificar todos los proveedores que NO tengan registrada ninguna orden de pedido.</h2>
       <Table columns={columns} data={data} />
     </div>
   );

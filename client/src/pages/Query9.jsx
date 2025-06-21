@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchQuery } from '../services/api';
+import { fetchQueryWithParam } from '../services/api';
 import Table from '../components/Table';
 
 function Query1() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchQuery(1)
+    fetchQueryWithParam(9, 'marca=COTO')
       .then(res => {
         console.log("Respuesta API completa:", res.data);
         if (res.data && Array.isArray(res.data.data)) {
@@ -30,14 +30,16 @@ function Query1() {
   }, []);
 
   const columns = [
-    { Header: 'ID', accessor: 'id_proveedor' },
-    { Header: 'Razón Social', accessor: 'razon_social' },
-    { Header: 'Teléfonos', accessor: 'telefonos' },
+    { Header: 'ID pedido', accessor: 'id_pedido' },
+    { Header: 'ID proveedor', accessor: 'id_proveedor' },
+    { Header: 'IVA', accessor: 'iva' },
+    { Header: 'Total sin IVA', accessor: 'total_sin_iva' },
+    { Header: 'Fecha', accessor: 'fecha' },
   ];
 
   return (
     <div style={{ padding: 16 }}>
-      <h2>1. Proveedores Activos y Habilitados</h2>
+      <h2>Listar los datos de todas las órdenes de pedido que contengan productos de la marca “COTO”.</h2>
       <Table columns={columns} data={data} />
     </div>
   );

@@ -6,7 +6,7 @@ function Query1() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchQuery(1)
+    fetchQuery(4)
       .then(res => {
         console.log("Respuesta API completa:", res.data);
         if (res.data && Array.isArray(res.data.data)) {
@@ -37,7 +37,7 @@ function Query1() {
 
   return (
     <div style={{ padding: 16 }}>
-      <h2>1. Proveedores Activos y Habilitados</h2>
+      <h2>Obtener todos los proveedores que tengan registrada al menos una orden de pedido.</h2>
       <Table columns={columns} data={data} />
     </div>
   );
