@@ -1,9 +1,9 @@
 const fs = require('fs');
 
-const inputFile = '/workspaces/BD2-TPO/datasets/proveedor_utf8.csv';
+const inputFile = '/workspaces/BD2-TPO/datasets/proveedor.csv';
 const outputFile = '/workspaces/BD2-TPO/datasets/proveedor_coma.csv';
 
-const data = fs.readFileSync(inputFile);
+const data = fs.readFileSync(inputFile, 'utf8');
 
 const lines = data.split('\n');
 const outputLines = [];
