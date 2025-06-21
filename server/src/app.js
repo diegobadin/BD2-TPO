@@ -5,6 +5,7 @@ const { connectRedis } = require('./lib/redis');
 
 const productosR = require('./routes/productos');
 const queryR = require('./routes/query');
+const operacionR = require('./routes/operacion');
 
 const proveedorR = require('./routes/proveedor');
 
@@ -17,7 +18,7 @@ async function bootstrap() {
 
   app.use('/api/productos', productosR);
   app.use('/api/query', queryR);
-  
+  app.use('/api/operacion', operacionR);
   app.use('/api/proveedor', proveedorR);
 
   const PORT = process.env.PORT || 4000;
