@@ -1,0 +1,1 @@
+{"source":"mongo","data":[{"id_proveedor":58,"activo":1,"habilitado":1},{"id_proveedor":62,"activo":0,"habilitado":0}]}

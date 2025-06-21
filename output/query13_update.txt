@@ -1,0 +1,1 @@
+{"_id":"68560d49020b69fa07066963","id_proveedor":20,"CUIT_proveedor":30660608195,"razon_social":"Dorsey","tipo_sociedad":"SRL","direccion":"Avda Cabildo 1543 Piso 12, CABA","activo":1,"habilitado":1,"telefonos":[{"codigo_area":624,"nro_telefono":4263377,"tipo":"M"},{"codigo_area":721,"nro_telefono":4757253,"tipo":"F"},{"codigo_area":934,"nro_telefono":4741992,"tipo":"F"}]}
