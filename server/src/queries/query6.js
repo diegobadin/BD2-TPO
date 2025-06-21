@@ -48,6 +48,7 @@ module.exports = {
             }
         ]).toArray();
         subscribe(proveedores, key_prefix);
+        subscribe(operaciones, key_prefix);
         return results;
     }
 };

@@ -15,8 +15,6 @@ module.exports = {
 
     if (!query.marca) throw new Error("Falta el parámetro 'marca'");
 
-    console.log(query.marca);
-
     const results = await db
       .collection(productos)
       .aggregate([
